@@ -1,0 +1,17 @@
+import { useState } from 'react'
+import Desktop from './Desktop.jsx';
+import Taskbar from './Taskbar.jsx';
+import './css/App.css'
+
+function App() {
+
+
+  return (
+    <>
+      <Desktop />
+      <Taskbar />
+    </>
+  )
+}
+
+export default App
