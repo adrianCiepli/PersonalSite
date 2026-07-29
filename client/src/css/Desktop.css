@@ -7,5 +7,5 @@
     grid-template-columns: repeat(18, 1fr);
     grid-template-rows: repeat(10, 1fr);
     grid-auto-flow: column;
-    gap: clamp(2px, 0.6vw, 6px);
+    user-select: none;
 }

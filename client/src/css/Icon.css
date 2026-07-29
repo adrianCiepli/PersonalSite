@@ -14,8 +14,12 @@
     background-color: rgba(156, 181, 250, 0.459);
 }
 
+.Icon:focus {
+    background-color: rgba(156, 181, 250, 0.459);
+}
+
 .Icon img {
-    width: 80%;
+    width: 75%;
     height: auto;
     object-fit: cover;
     display: block;
