@@ -1,9 +1,9 @@
 
 function TaskbarIcon() {
     return (
-        <>
+        <div className="TaskbarIcon">
 
-        </>
+        </div>
     );
 }
 

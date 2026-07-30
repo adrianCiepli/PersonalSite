@@ -19,7 +19,7 @@
 }
 
 .Icon img {
-    width: 75%;
+    width: 75px;
     height: auto;
     object-fit: cover;
     display: block;
@@ -37,4 +37,10 @@
         0px 1px 0 black,
         -1px 0px 0 black,
         1px 0px 0 black;
+}
+
+@media (max-width: 1740px) {
+    .Icon img {
+        width: 85%;
+    }
 }
