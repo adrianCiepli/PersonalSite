@@ -1,0 +1,133 @@
+.Topbar {
+    width: 100%;
+    height: 38px;
+    background: linear-gradient(
+        135deg,
+        rgba(162, 218, 255, 0.6) 0%,
+        rgba(210, 230, 250, 0.75) 30%,
+        rgba(140, 190, 240, 0.65) 50%,
+        rgba(210, 230, 250, 0.75) 70%,
+        rgba(162, 218, 255, 0.6) 100%
+    );
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: "MS Sans Serif", "Microsoft Sans Serif", Tahoma, Arial, sans-serif;
+}
+
+.Topbar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.7) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    pointer-events: none; /* purely visual, shouldn't block clicks */
+}
+
+.Topbar .window-name {
+    
+}
+
+.Topbar .button-area {
+    display: flex;
+    align-items: top;
+}
+
+.Topbar .button-area span {
+    display: flex;
+    align-items: center;
+    height: 20px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    color: white;
+    text-shadow:
+        -1px -1px 0 rgb(41, 41, 41),
+         1px -1px 0 rgb(41, 41, 41),
+        -1px  1px 0 rgb(41, 41, 41),
+         1px  1px 0 rgb(41, 41, 41),
+         0px  1px 0 rgb(41, 41, 41),
+         -1px  0px 0 rgb(41, 41, 41),
+         0px  -1px 0 rgb(41, 41, 41),
+         1px  0px 0 rgb(41, 41, 41);
+    cursor: pointer;
+    border: 1px solid rgb(43, 43, 43);
+    background: linear-gradient(
+        to right,
+        #bcd4ee 0%,
+        #ffffff 50%,
+        #bcd4ee 100%
+    );
+    position: relative; /* Doesn't change this element but allows children to do position:absolute relative to this element */
+    z-index: 0;
+}
+
+.Topbar .button-area span::before {
+    /* Doing this since I can't make a smooth transition on background property */
+    /* Have a fake ::before <></> tags inside <span> at the start with this styling, it is transparent so we see actual <span> then on hover we fade this colour in */
+    /* Does not go functionally on top of <span>, so hovering and clicking is still on <span> */
+    content: ""; /* Not sure if required, but this is like the raw text in between tags in HTML */
+    position: absolute; /* Using coordinates relative to closest parent with position:relative, hence our inset:0 positions right on top of parent */
+    inset: 0; /* offset from top/left/bottom/right are all 0, so all my edges are not offset from any of the sides of the parent, hence 100% width and height of parent */
+    background: linear-gradient(
+        to right,
+        #5b7deb 0%,
+        #a5b5e7 50%,
+        #5b7deb 100%
+    );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+}
+
+.Topbar .button-area span:hover::before {
+    /* When you hover over the <span> element, style the pseudo ::before element tied to it like this */
+    opacity: 1;
+}
+
+.Topbar .minimize-button {
+
+}
+
+.Topbar .maximize-button {
+
+}
+
+.Topbar .button-area span.close-button {
+    padding-left: 18px;
+    padding-right: 18px;
+    background: linear-gradient(
+        to right,
+        #eb5b5b 0%,
+        rgb(243, 184, 184) 50%,
+        #eb5b5b 100%
+    )
+}
+
+.Topbar .button-area span.close-button::before {
+    padding-left: 18px;
+    padding-right: 18px;
+    background: linear-gradient(
+        to right,
+        #e43131 0%,
+        rgb(241, 136, 136) 50%,
+        #e43131 100%
+    );
+    opacity: 0;
+    z-index: -1;
+}
+
+.Topbar .button-area span.close-button:hover::before {
+    opacity: 1;
+}

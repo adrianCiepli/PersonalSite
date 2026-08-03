@@ -39,7 +39,7 @@
         1px 0px 0 black;
 }
 
-@media (max-width: 1740px) {
+@media (max-width: 1200px) {
     .Icon img {
         width: 85%;
     }

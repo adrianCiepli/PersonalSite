@@ -4,8 +4,8 @@ import Icon from './Icon.jsx';
 
 
 function Desktop() {
-    const appsToHave = ["Mail", "Education", "About", "Portfolio", "Recycle", "Explorer", "Notepad", "Mobdle"];
-    const gridSize = 10*18; // rows * cols
+    const appsToHave = ["Mail", "Education", "About", "Portfolio", "Recycle", "Explorer", "Notepad", "Firefox", "Mobdle", "Photos"];
+    const gridSize = 8*16; // rows * cols
     const [desktopApps, setDesktopApps] = useState([...appsToHave, ...Array(gridSize - appsToHave.length).fill(null)]);
 
     const [draggingIndex, setDraggingIndex] = useState(null);
