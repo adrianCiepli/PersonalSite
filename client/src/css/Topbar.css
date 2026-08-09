@@ -3,11 +3,11 @@
     height: 38px;
     background: linear-gradient(
         135deg,
-        rgba(162, 218, 255, 0.6) 0%,
+        rgba(115, 195, 248, 0.6) 0%,
         rgba(210, 230, 250, 0.75) 30%,
-        rgba(140, 190, 240, 0.65) 50%,
+        rgba(91, 166, 241, 0.65) 50%,
         rgba(210, 230, 250, 0.75) 70%,
-        rgba(162, 218, 255, 0.6) 100%
+        rgba(115, 195, 248, 0.6) 100%
     );
     position: relative;
     display: flex;
@@ -19,23 +19,20 @@
     font-family: "MS Sans Serif", "Microsoft Sans Serif", Tahoma, Arial, sans-serif;
 }
 
-.Topbar::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60%;
+.Topbar.in-focus {
     background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.7) 0%,
-        rgba(255, 255, 255, 0) 100%
+        135deg,
+        rgba(90, 188, 253, 0.6) 0%,
+        rgba(176, 211, 247, 0.75) 30%,
+        rgba(42, 141, 240, 0.65) 50%,
+        rgba(176, 211, 247, 0.75) 70%,
+        rgba(90, 188, 253, 0.6) 100%
     );
-    pointer-events: none; /* purely visual, shouldn't block clicks */
 }
 
 .Topbar .window-name {
-    
+    font-size: 14px;
+    user-select: none;
 }
 
 .Topbar .button-area {
@@ -50,7 +47,7 @@
     padding-left: 8px;
     padding-right: 8px;
     font-size: 13px;
-    font-weight: bold;
+    font-weight: 1000;
     color: white;
     text-shadow:
         -1px -1px 0 rgb(41, 41, 41),
@@ -71,6 +68,22 @@
     );
     position: relative; /* Doesn't change this element but allows children to do position:absolute relative to this element */
     z-index: 0;
+    user-select: none;
+}
+
+.Topbar .button-area span::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.7) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    pointer-events: none; /* purely visual, shouldn't block clicks */
 }
 
 .Topbar .button-area span::before {
@@ -87,7 +100,7 @@
         #5b7deb 100%
     );
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.2s ease;
     z-index: -1;
 }
 
@@ -96,22 +109,14 @@
     opacity: 1;
 }
 
-.Topbar .minimize-button {
-
-}
-
-.Topbar .maximize-button {
-
-}
-
 .Topbar .button-area span.close-button {
     padding-left: 18px;
     padding-right: 18px;
     background: linear-gradient(
         to right,
-        #eb5b5b 0%,
-        rgb(243, 184, 184) 50%,
-        #eb5b5b 100%
+        #e43131 0%,
+        rgb(241, 136, 136) 50%,
+        #e43131 100%
     )
 }
 
@@ -120,9 +125,9 @@
     padding-right: 18px;
     background: linear-gradient(
         to right,
-        #e43131 0%,
-        rgb(241, 136, 136) 50%,
-        #e43131 100%
+        #e01d1d 0%,
+        rgb(236, 87, 87) 50%,
+        #e01d1d 100%
     );
     opacity: 0;
     z-index: -1;

@@ -6,11 +6,9 @@ import './css/App.css'
 
 function App() {
 
-
   return (
     <>
       <Desktop />
-      <Window />
       <Taskbar />
     </>
   )

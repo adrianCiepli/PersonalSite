@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import './css/Desktop.css'
 import Icon from './Icon.jsx';
+import Window from './Window.jsx';
 
 
 function Desktop() {
     const appsToHave = ["Mail", "Education", "About", "Portfolio", "Recycle", "Explorer", "Notepad", "Firefox", "Mobdle", "Photos"];
     const gridSize = 8*16; // rows * cols
     const [desktopApps, setDesktopApps] = useState([...appsToHave, ...Array(gridSize - appsToHave.length).fill(null)]);
+    const [activeWindows, setActiveWindows] = useState(['Window']);
+    const [activeErrorTexts, setActiveErrorTexts] = useState([]); // Stores error text?
+    const MAXWINDOWS = 1;
 
     const [draggingIndex, setDraggingIndex] = useState(null);
 
@@ -14,7 +18,7 @@ function Desktop() {
         // This is called by the element we mousedown and hold on
         setDraggingIndex(index);
         e.target.focus();
-    }
+    };
 
     const handleDragOver = (e) => {
         // This is called by every element we hover over, each has a default that specifically says we do not accept dropping item behaviour, just cancels out
@@ -25,7 +29,7 @@ function Desktop() {
         if (draggingIndex !== null) { // does not trigger if something without a dragStart handler drags onto this element
             e.preventDefault(); 
         }
-    }
+    };
 
     const handleDrop = (index) => {
         // Is called by the element we drop on to
@@ -38,16 +42,35 @@ function Desktop() {
         newDesktopApps.splice(draggingIndex, 1, droppedOnItem);
         setDesktopApps(newDesktopApps);
         setDraggingIndex(null);
-    }
+    };
+
+    const handleDoubleClick = (appStr) => {
+        if (activeWindows.length >= MAXWINDOWS) {
+            const newArr = [... activeErrorTexts, `Your RAM is too teeny-tiny, you can only have ${MAXWINDOWS} active window(s) at once.`]
+            setActiveErrorTexts(newArr);
+        } else {
+            const newArr = [... activeWindows, appStr];
+            setActiveWindows(newArr);
+        }
+    };
 
     return (
         <div className='Desktop'>
             {desktopApps.map((desktopApp, index) => {
                 if (desktopApp !== null) {
-                    return <Icon key={index} name={desktopApp} onDragStart={(e) => {handleDragStart(e, index)}} onDragOver={handleDragOver} onDrop={() => {handleDrop(index)}} draggable/>
+                    return <Icon key={index} name={desktopApp} handleDragStart={(e) => {handleDragStart(e, index)}} handleDragOver={handleDragOver} 
+                                handleDrop={() => {handleDrop(index)}} handleDoubleClick={() => {handleDoubleClick(desktopApp)}} draggable/>
                 } else {
                     return <div key={index} onDragOver={handleDragOver} onDrop={() => {handleDrop(index)}}></div>
                 }
+            })}
+
+            {activeWindows.map((window, index) => {
+                return <Window key={index} index={index} appNameStr={window} actives={activeWindows} setActives={setActiveWindows} />
+            })}
+            
+            {activeErrorTexts.map((errorText, index) => {
+                return <Window key={index} index={index} appNameStr={'Error'} errorText={errorText} actives={activeErrorTexts} setActives={setActiveErrorTexts} />
             })}
         </div>
     );

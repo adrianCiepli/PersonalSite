@@ -1,7 +1,5 @@
 .Window {
     position: fixed;
-    top: 100px;
-    left: 100px;
     z-index: 1;
     width: 1000px;
     height: 700px;
@@ -10,8 +8,8 @@
     border-radius: 3px;
     border: 0.5px solid rgb(73, 73, 73);
     overflow: hidden; /* keeps the topbar's rounded corners clean */
-    backdrop-filter: blur(12px); /* the actual "frosted glass" effect */
-    transition: box-shadow 0.5s ease;
+    backdrop-filter: blur(12px); /* frosted glass effect */
+    animation: window-open 180ms cubic-bezier(0.2, 0.9, 0.3, 1) both;
 }
 
 .Window:focus {
@@ -31,8 +29,26 @@
 .Window .content-border {
     width: 100%;
     height: calc(100% - 38px);
-    border-left: 8px solid rgba(162, 218, 255, 0.6);
-    border-right: 8px solid rgba(162, 218, 255, 0.6);
-    border-bottom: 8px solid rgba(162, 218, 255, 0.6);
+    border-left: 8px solid rgba(115, 195, 248, 0.6);
+    border-right: 8px solid rgba(115, 195, 248, 0.6);
+    border-bottom: 8px solid rgba(115, 195, 248, 0.6);
     box-sizing: border-box;
+}
+
+.Window .content-area.error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Window .content-area.error p {
+    margin-left: 12px;
+    font-size: 12px;
+    font-family: "MS Sans Serif", "Microsoft Sans Serif", Tahoma, Arial, sans-serif;
+}
+
+
+@keyframes window-open {
+    from { opacity: 0; transform: scale(0.85); }
+    to   { opacity: 1; transform: scale(1); }
 }

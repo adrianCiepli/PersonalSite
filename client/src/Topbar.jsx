@@ -1,14 +1,70 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import './css/Topbar.css';
 
-function Topbar() {
+function Topbar({ index, appNameStr, coords, setCoords, setHasFocus, hasFocus, windowElem, DEFAULTDIMENSIONS, setDimensions, actives, setActives }) {
+    const [isDragging, setDragging] = useState(false);
+    const [mouseWindowOffset, setMouseWindowOffset] = useState({x: 0, y: 0});
+    const [maximized, setMaximized] = useState(false);
+
+    const handleMouseDown = (e) => {
+        setHasFocus(true);
+        if (!maximized) {
+            setDragging(true);
+            const xOffset = e.clientX - coords.x;
+            const yOffset = e.clientY - coords.y;
+            setMouseWindowOffset({x:xOffset, y:yOffset});
+        }
+    };
+
+    useEffect(() => {
+        if (isDragging) {
+            window.addEventListener("mousemove", handleMouseMove);
+            window.addEventListener("mouseup", handleMouseUp);
+        }
+        return () => {
+            window.removeEventListener("mousemove", handleMouseMove);
+            window.removeEventListener("mouseup", handleMouseUp);
+        };
+    }, [isDragging]);
+
+    const handleMouseMove = (e) => {
+        const newX = e.clientX - mouseWindowOffset.x;
+        const newY = e.clientY - mouseWindowOffset.y;
+        windowElem.current.style.left = `${newX}px`;
+        windowElem.current.style.top = `${newY}px`;
+    };
+
+    const handleMouseUp = (e) => {
+        const newX = e.clientX - mouseWindowOffset.x;
+        const newY = e.clientY - mouseWindowOffset.y;
+        setDragging(false);
+        setCoords({x:newX, y:newY});
+    };
+
+    const handleMaximize = () => {
+        if (maximized) {
+            setDimensions(DEFAULTDIMENSIONS); // happens a bit later on a scheduled re-render, so the state variable may be stale
+            const defX = (window.innerWidth / 2) - (DEFAULTDIMENSIONS.width / 2); // compare against a known value, not the state variable
+            const defY = (window.innerHeight / 2) - (DEFAULTDIMENSIONS.height / 2);
+            setCoords({x:defX, y:defY});
+        } else {
+            setDimensions({width:'100%', height:'100%'});
+            setCoords({x:0, y:0});
+        }
+        setMaximized(!maximized);
+    }
+
+    const handleClose = () => {
+        // TODO: Remove by own index from the list of actives via setActives and splicing
+    }
+
     return (
-        <div className="Topbar">
-            <p className="window-name">Window</p>
+        <div className={hasFocus ? "Topbar in-focus" : "Topbar"} onMouseDown={handleMouseDown} >
+            <p className="window-name">{appNameStr}</p>
             <div className="button-area">
-                <span className="minimize-button">_</span>
-                <span className="maximize-button">🗖</span>
-                <span className="close-button">X</span>
+                {appNameStr!=='Error' && <span className="minimize-button">_</span>}
+                {appNameStr!=='Error' && <span className="maximize-button" onClick={handleMaximize}>{maximized ? '⧉' : '🗖'}</span>}
+                <span className="close-button" onClick={handleClose}>X</span>
             </div>
         </div>
     );
