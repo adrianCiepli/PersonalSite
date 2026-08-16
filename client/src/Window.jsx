@@ -14,7 +14,9 @@ function Window({ index, appNameStr, errorText='', actives, setActives }) {
 
     if (appNameStr === 'Error') {
         return (
-            <div className="Window" tabIndex={1} ref={windowElem} onFocus={() => {setHasFocus(true)}} onBlur={() => {setHasFocus(false)}}
+            <div className="Window" tabIndex={1} ref={windowElem} 
+                onFocus={() => {setHasFocus(true)}} 
+                onBlur={() => {setHasFocus(false)}}
                 style={{
                     left: coords.x,
                     top: coords.y,
@@ -22,8 +24,8 @@ function Window({ index, appNameStr, errorText='', actives, setActives }) {
                     height: dimensions.height,
                 }}
             >
-                <Topbar appNameStr={appNameStr} coords={coords} setCoords={setCoords} setHasFocus={setHasFocus} 
-                    hasFocus={hasFocus} windowElem={windowElem} DEFAULTDIMENSIONS={DEFAULTDIMENSIONS} dimensions={dimensions} setDimensions={setDimensions} />
+                <Topbar appNameStr={appNameStr} coords={coords} setCoords={setCoords} setHasFocus={setHasFocus} hasFocus={hasFocus} windowElem={windowElem} 
+                            DEFAULTDIMENSIONS={DEFAULTDIMENSIONS} dimensions={dimensions} setDimensions={setDimensions} actives={actives} setActives={setActives} />
                 <div className="content-border">
                     <div className="content-area error">
                         <p>{errorText}</p>

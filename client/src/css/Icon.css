@@ -19,7 +19,7 @@
 }
 
 .Icon img {
-    width: 75px;
+    width: clamp(62px, 82%, 71px);
     height: auto;
     object-fit: cover;
     display: block;
