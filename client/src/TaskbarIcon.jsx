@@ -1,8 +1,8 @@
 
-function TaskbarIcon() {
+function TaskbarIcon({ appName, active }) {
     return (
-        <div className="TaskbarIcon">
-
+        <div className={active ? "TaskbarIcon active-app" : "TaskbarIcon"}>
+            <img src={`/desktopicons/${appname}-icon.png`} />
         </div>
     );
 }

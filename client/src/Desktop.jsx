@@ -4,11 +4,11 @@ import Icon from './Icon.jsx';
 import Window from './Window.jsx';
 
 
-function Desktop() {
+function Desktop({ openApps, setOpenApps }) {
     const appsToHave = ["Mail", "Education", "About", "Portfolio", "Recycle", "Explorer", "Notepad", "Firefox", "Mobdle", "Photos"];
     const gridSize = 8*16; // rows * cols
     const [desktopApps, setDesktopApps] = useState([...appsToHave, ...Array(gridSize - appsToHave.length).fill(null)]);
-    const [activeWindows, setActiveWindows] = useState(['Window']);
+    const [activeWindows, setActiveWindows] = useState([]);
     const [activeErrorTexts, setActiveErrorTexts] = useState([]); // Stores error text?
     const MAXWINDOWS = 1;
 
@@ -51,6 +51,7 @@ function Desktop() {
         } else {
             const newArr = [... activeWindows, appStr];
             setActiveWindows(newArr);
+            setOpenApps(newArr);
         }
     };
 

@@ -4,7 +4,7 @@ function Icon({name, handleDragStart, handleDragOver, handleDrop, handleDoubleCl
     return (
         <div className='Icon'
             onDragStart={handleDragStart} onDragOver={handleDragOver} onDrop={handleDrop} onDoubleClick={handleDoubleClick} tabIndex={0} draggable>
-            <img src={`${name}-icon.png`} draggable={false} />
+            <img src={`/desktopicons/${name}-icon.png`} draggable={false} />
             <span>{name}</span>
         </div>
     );

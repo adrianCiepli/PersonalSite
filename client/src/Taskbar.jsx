@@ -1,8 +1,11 @@
 import "./css/Taskbar.css";
+import { useState, useEffect } from "react";
 import windows_icon from './assets/windows_icon.png';
 import Tray from './Tray.jsx';
 
-function Taskbar() {
+function Taskbar({ openApps, setOpenApps }) {
+    const pinnedApps = [];
+
     return (
         <div className="Taskbar">
             <div className="start button">
@@ -11,7 +14,7 @@ function Taskbar() {
             </div>
 
             <div className="app-tray">
-
+                
             </div>
 
             <Tray />

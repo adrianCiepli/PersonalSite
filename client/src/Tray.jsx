@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import antivirusImg from './assets/Antivirus.png';
-import discImg from './assets/Disc.png';
-import microphoneImg from './assets/Microphone.png';
-import mailNotifImg from './assets/MailNotif.png';
-import canadaImg from './assets/Canada.png';
-import audioImg from './assets/Audio.png';
-import cableImg from './assets/Cable.png';
-import printerImg from './assets/Printer.png';
+import antivirusImg from './assets/trayicons/Antivirus.png';
+import discImg from './assets/trayicons/Disc.png';
+import microphoneImg from './assets/trayicons/Microphone.png';
+import mailNotifImg from './assets/trayicons/MailNotif.png';
+import canadaImg from './assets/trayicons/Canada.png';
+import audioImg from './assets/trayicons/Audio.png';
+import cableImg from './assets/trayicons/Cable.png';
+import printerImg from './assets/trayicons/Printer.png';
 import './css/Tray.css';
 
 const dateFormatter = new Intl.DateTimeFormat(undefined, {year: "numeric", month: "2-digit", day: "2-digit"}); // undefined to default to user locale

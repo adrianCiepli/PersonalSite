@@ -5,12 +5,13 @@ import Window from './Window.jsx';
 import './css/App.css'
 
 function App() {
+  const [openApps, setOpenApps] = useState([]);
 
   return (
-    <>
-      <Desktop />
-      <Taskbar />
-    </>
+    <div className='App'>
+      <Desktop openApps={openApps} setOpenApps={setOpenApps} />
+      <Taskbar openApps={openApps} setOpenApps={setOpenApps} />
+    </div>
   )
 }
 
