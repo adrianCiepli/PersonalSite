@@ -1,0 +1,20 @@
+.TaskbarIcon { /* Open window icon on taskbar */
+    display: flex;
+    align-items: center;
+    width: 12vw;
+    user-select: none;
+}
+
+.TaskbarIcon.pinned { /* Pinned app icon on taskbar */
+    width: 3vw;
+}
+
+.TaskbarIcon img {
+    height: 100%;
+}
+
+.TaskbarIcon p {
+    font-family: "MS Sans Serif", "Microsoft Sans Serif", Tahoma, Arial, sans-serif;
+    color: white;
+    font-size: 14px;
+}

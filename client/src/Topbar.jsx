@@ -48,18 +48,22 @@ function Topbar({ index, appNameStr, coords, setCoords, setHasFocus, hasFocus, w
             const defY = (window.innerHeight / 2) - (DEFAULTDIMENSIONS.height / 2);
             setCoords({x:defX, y:defY});
         } else {
-            setDimensions({width:'100%', height:'100%'});
+            setDimensions({width:'100%', height:'95vh'}); // Taskbar height is 5vh
             setCoords({x:0, y:0});
         }
         setMaximized(!maximized);
     }
 
     const handleClose = () => {
-        // TODO: Remove by own index from the list of actives via setActives and splicing
+        // Remove by own index from the list of actives via setActives and splicing
+        // as of now, the index attribute is not necessary, however may prove useful for more complex functionality
+        let newArr = [...actives];
+        newArr.splice(index, 1);
+        setActives(newArr);
     }
 
     return (
-        <div className={hasFocus ? "Topbar in-focus" : "Topbar"} onMouseDown={handleMouseDown} >
+        <div className={hasFocus ? "Topbar in-focus" : "Topbar"} onMouseDown={handleMouseDown}>
             <p className="window-name">{appNameStr}</p>
             <div className="button-area">
                 {appNameStr!=='Error' && <span className="minimize-button">_</span>}

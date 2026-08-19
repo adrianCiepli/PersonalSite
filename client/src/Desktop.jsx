@@ -4,12 +4,11 @@ import Icon from './Icon.jsx';
 import Window from './Window.jsx';
 
 
-function Desktop({ openApps, setOpenApps }) {
+function Desktop({ activeWindows, setActiveWindows, activeErrors, setactiveErrors }) {
     const appsToHave = ["Mail", "Education", "About", "Portfolio", "Recycle", "Explorer", "Notepad", "Firefox", "Mobdle", "Photos"];
     const gridSize = 8*16; // rows * cols
     const [desktopApps, setDesktopApps] = useState([...appsToHave, ...Array(gridSize - appsToHave.length).fill(null)]);
-    const [activeWindows, setActiveWindows] = useState([]);
-    const [activeErrorTexts, setActiveErrorTexts] = useState([]); // Stores error text?
+    // Opening too many apps - error: 1
     const MAXWINDOWS = 1;
 
     const [draggingIndex, setDraggingIndex] = useState(null);
@@ -46,10 +45,10 @@ function Desktop({ openApps, setOpenApps }) {
 
     const handleDoubleClick = (appStr) => {
         if (activeWindows.length >= MAXWINDOWS) {
-            const newArr = [... activeErrorTexts, `Your RAM is too teeny-tiny, you can only have ${MAXWINDOWS} active window(s) at once.`]
-            setActiveErrorTexts(newArr);
+            const newArr = [... activeErrors, {error: 1, errorText: `Your RAM is too teeny-tiny, you can only have ${MAXWINDOWS} active window(s) at once.`}];
+            setactiveErrors(newArr);
         } else {
-            const newArr = [... activeWindows, appStr];
+            const newArr = [... activeWindows, {index: activeWindows.length, appStr: appStr}];
             setActiveWindows(newArr);
             setOpenApps(newArr);
         }
@@ -67,11 +66,13 @@ function Desktop({ openApps, setOpenApps }) {
             })}
 
             {activeWindows.map((window, index) => {
-                return <Window key={index} index={index} appNameStr={window} actives={activeWindows} setActives={setActiveWindows} />
+                return <Window key={index} index={index} appNameStr={window.appStr} actives={activeWindows} 
+                            setActives={setActiveWindows} />
             })}
             
-            {activeErrorTexts.map((errorText, index) => {
-                return <Window key={index} index={index} appNameStr={'Error'} errorText={errorText} actives={activeErrorTexts} setActives={setActiveErrorTexts} />
+            {activeErrors.map((error, index) => {
+                return <Window key={index} index={index} appNameStr={'Error'} errorText={error.errorText} actives={activeErrors} 
+                            setActives={setactiveErrors} />
             })}
         </div>
     );
