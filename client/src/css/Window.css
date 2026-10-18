@@ -47,8 +47,25 @@
     font-family: "MS Sans Serif", "Microsoft Sans Serif", Tahoma, Arial, sans-serif;
 }
 
+.flashing-window {
+    animation: window-flash 1s infinite ease-in-out 1.8s;
+}
+
 
 @keyframes window-open {
     from { opacity: 0; transform: scale(0.85); }
     to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes window-flash {
+    from {     
+        border-left: 8px solid rgba(115, 195, 248, 0.6);
+        border-right: 8px solid rgba(115, 195, 248, 0.6);
+        border-bottom: 8px solid rgba(115, 195, 248, 0.6);
+    }
+    to {
+        border-left: 8px solid rgba(196, 222, 240, 0.6);
+        border-right: 8px solid rgba(196, 222, 240, 0.6);
+        border-bottom: 8px solid rgba(196, 222, 240, 0.6);
+    }
 }

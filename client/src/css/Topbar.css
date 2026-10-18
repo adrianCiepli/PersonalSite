@@ -1,3 +1,4 @@
+
 .Topbar {
     width: 100%;
     height: 38px;
@@ -135,4 +136,27 @@
 
 .Topbar .button-area span.close-button:hover::before {
     opacity: 1;
+}
+
+@keyframes topbar-flash {
+    from {     
+        background: linear-gradient(
+            135deg,
+            rgba(115, 195, 248, 0.6) 0%,
+            rgba(210, 230, 250, 0.75) 30%,
+            rgba(91, 166, 241, 0.65) 50%,
+            rgba(210, 230, 250, 0.75) 70%,
+            rgba(115, 195, 248, 0.6) 100%
+        );
+    }
+    to {
+        background: linear-gradient(
+            135deg,
+            rgba(165, 202, 239, 0.75) 0%,
+            rgba(115, 195, 248, 0.6) 30%,
+            rgba(210, 230, 250, 0.75) 50%,
+            rgba(115, 195, 248, 0.6) 70%,
+            rgba(165, 202, 239, 0.75) 100%
+        );
+    }
 }

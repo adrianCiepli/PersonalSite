@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { WindowContext } from './contexts/WindowContext.jsx';
 import './css/Desktop.css'
 import Icon from './Icon.jsx';
 import Window from './Window.jsx';
 
 
-function Desktop({ activeWindows, setActiveWindows, activeErrors, setactiveErrors }) {
+function Desktop({  }) {
+    const { activeWindows, setActiveWindows, activeErrors, setActiveErrors } = useContext(WindowContext);
     const appsToHave = ["Mail", "Education", "About", "Portfolio", "Recycle", "Explorer", "Notepad", "Firefox", "Mobdle", "Photos"];
     const gridSize = 8*16; // rows * cols
     const [desktopApps, setDesktopApps] = useState([...appsToHave, ...Array(gridSize - appsToHave.length).fill(null)]);
@@ -66,8 +68,7 @@ function Desktop({ activeWindows, setActiveWindows, activeErrors, setactiveError
             })}
 
             {activeWindows.map((window, index) => {
-                return <Window key={index} index={index} appNameStr={window.appStr} actives={activeWindows} 
-                            setActives={setActiveWindows} />
+                return <Window key={index} index={index} appNameStr={window.appStr}/>
             })}
             
             {activeErrors.map((error, index) => {

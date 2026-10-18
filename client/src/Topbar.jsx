@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import './css/Topbar.css';
 
-function Topbar({ index, appNameStr, coords, setCoords, setHasFocus, hasFocus, windowElem, DEFAULTDIMENSIONS, setDimensions, actives, setActives }) {
+function Topbar({ index, appNameStr, coords, setCoords, setHasFocus, hasFocus, windowElem, DEFAULTDIMENSIONS, setDimensions, actives, setActives, topbarRef }) {
     const [isDragging, setDragging] = useState(false);
     const [mouseWindowOffset, setMouseWindowOffset] = useState({x: 0, y: 0});
     const [maximized, setMaximized] = useState(false);
@@ -63,7 +63,7 @@ function Topbar({ index, appNameStr, coords, setCoords, setHasFocus, hasFocus, w
     }
 
     return (
-        <div className={hasFocus ? "Topbar in-focus" : "Topbar"} onMouseDown={handleMouseDown}>
+        <div className={hasFocus ? "Topbar in-focus" : "Topbar"} onMouseDown={handleMouseDown} ref={topbarRef}>
             <p className="window-name">{appNameStr}</p>
             <div className="button-area">
                 {appNameStr!=='Error' && <span className="minimize-button">_</span>}
