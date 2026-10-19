@@ -1,11 +1,13 @@
 import "./css/Taskbar.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { WindowContext } from './contexts/WindowContext.jsx'
 import windows_icon from './assets/windows_icon.png';
 import Tray from './Tray.jsx';
 import TaskbarIcon from "./TaskbarIcon.jsx";
 
-function Taskbar({ activeWindows, setActiveWindows, activeErrors, setactiveErrors }) {
+function Taskbar({  }) {
     const pinnedApps = ['Explorer'];
+    const { activeWindows, setActiveWindows, activeErrors, setactiveErrors } = useContext(WindowContext);
 
     const handleClick = () => {
         if (activeWindows.length >= MAXWINDOWS) {

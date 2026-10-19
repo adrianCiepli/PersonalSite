@@ -48,11 +48,11 @@ function Desktop({  }) {
     const handleDoubleClick = (appStr) => {
         if (activeWindows.length >= MAXWINDOWS) {
             const newArr = [... activeErrors, {error: 1, errorText: `Your RAM is too teeny-tiny, you can only have ${MAXWINDOWS} active window(s) at once.`}];
-            setactiveErrors(newArr);
+            setActiveErrors(newArr);
         } else {
             const newArr = [... activeWindows, {index: activeWindows.length, appStr: appStr}];
             setActiveWindows(newArr);
-            setOpenApps(newArr);
+            // setOpenApps(newArr);
         }
     };
 
@@ -73,7 +73,7 @@ function Desktop({  }) {
             
             {activeErrors.map((error, index) => {
                 return <Window key={index} index={index} appNameStr={'Error'} errorText={error.errorText} actives={activeErrors} 
-                            setActives={setactiveErrors} />
+                            setActives={setActiveErrors} />
             })}
         </div>
     );

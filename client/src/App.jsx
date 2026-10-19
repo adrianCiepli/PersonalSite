@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Desktop from './Desktop.jsx';
 import Taskbar from './Taskbar.jsx';
-import WindowContextComponent from './contexts/WindowContextComponent.jsx';
+import WindowContextComponent from './contexts/WindowContext.jsx';
 import './css/App.css'
 
 function App() {
@@ -12,8 +12,7 @@ function App() {
 
   return (
     <div className='App'>
-      <WindowContextComponent activeWindows={activeWindows} setActiveWindows={setActiveWindows} activeErrors={activeErrors} 
-                  setActiveErrors={setActiveErrors}>
+      <WindowContextComponent activeWindows={activeWindows} setActiveWindows={setActiveWindows} activeErrors={activeErrors} setActiveErrors={setActiveErrors}>
         <Desktop />
         <Taskbar />
       </WindowContextComponent>

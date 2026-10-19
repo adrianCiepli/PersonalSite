@@ -48,7 +48,7 @@
 }
 
 .flashing-window {
-    animation: window-flash 1s infinite ease-in-out 1.8s;
+    animation: window-flash 0.5s infinite;
 }
 
 
@@ -59,13 +59,13 @@
 
 @keyframes window-flash {
     from {     
-        border-left: 8px solid rgba(115, 195, 248, 0.6);
-        border-right: 8px solid rgba(115, 195, 248, 0.6);
-        border-bottom: 8px solid rgba(115, 195, 248, 0.6);
+        border-left-color: rgba(115, 195, 248, 0.6);
+        border-right-color: rgba(115, 195, 248, 0.6);
+        border-bottom-color: rgba(115, 195, 248, 0.6);
     }
     to {
-        border-left: 8px solid rgba(196, 222, 240, 0.6);
-        border-right: 8px solid rgba(196, 222, 240, 0.6);
-        border-bottom: 8px solid rgba(196, 222, 240, 0.6);
+        border-left-color: rgba(90, 188, 253, 0.6);
+        border-right-color: rgba(90, 188, 253, 0.6);
+        border-bottom-color: rgba(90, 188, 253, 0.6);
     }
 }
