@@ -56,7 +56,8 @@ function Window({ index, appNameStr, errorText=''}) {
         flashTimerRef.current = timer;
     }
 
-    // Topbar handlers
+    // TOPBAR DRAGGING
+    // ============================
     const handleMouseDown = (e) => {
         setHasFocus(true);
         if (!maximized) {
@@ -91,6 +92,8 @@ function Window({ index, appNameStr, errorText=''}) {
         setDragging(false);
         setCoords({x:newX, y:newY});
     };
+    // ============================
+
 
     const handleMaximize = () => {
         if (maximized) {

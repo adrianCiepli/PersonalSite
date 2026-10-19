@@ -58,6 +58,7 @@ function Desktop({  }) {
                 return <Window key={index} index={index} appNameStr={window.appStr}/>
             })}
             
+            {/* If active error then render an invisible unclickable thing overtop of everything else to "freeze" */}
             {activeError && <Window appNameStr={'Error'} errorText={activeError.errorText} />}
         </div>
     );
