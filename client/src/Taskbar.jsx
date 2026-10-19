@@ -7,17 +7,8 @@ import TaskbarIcon from "./TaskbarIcon.jsx";
 
 function Taskbar({  }) {
     const pinnedApps = ['Explorer'];
-    const { activeWindows, setActiveWindows, activeErrors, setactiveErrors } = useContext(WindowContext);
+    const { activeWindows, openWindow } = useContext(WindowContext);
 
-    const handleClick = () => {
-        if (activeWindows.length >= MAXWINDOWS) {
-            const newArr = [... activeErrors, {error: 1, errorText: `Your RAM is too teeny-tiny, you can only have ${MAXWINDOWS} active window(s) at once.`}];
-            setactiveErrors(newArr);
-        } else {
-            const newArr = [... activeWindows, {index: activeWindows.length, appStr: appStr}];
-            setActiveWindows(newArr);
-        }
-    };
     return (
         <div className="Taskbar">
             <div className="start button">
@@ -30,7 +21,7 @@ function Taskbar({  }) {
                     return <TaskbarIcon key={i} appStr={pinnedApp} pinned={true} />
                 })}
                 {activeWindows.map((window, i) => {
-                    return <TaskbarIcon key={i} appStr={window.appStr} pinned={false} handleClick={handleClick} />
+                    return <TaskbarIcon key={i} appStr={window.appStr} pinned={false} handleClick={() => {openWindow(window.appStr)}} />
                 })}
             </div>
 

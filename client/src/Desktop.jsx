@@ -6,12 +6,10 @@ import Window from './Window.jsx';
 
 
 function Desktop({  }) {
-    const { activeWindows, setActiveWindows, activeErrors, setActiveErrors } = useContext(WindowContext);
+    const { activeWindows, activeError, openWindow } = useContext(WindowContext);
     const appsToHave = ["Mail", "Education", "About", "Portfolio", "Recycle", "Explorer", "Notepad", "Firefox", "Mobdle", "Photos"];
     const gridSize = 8*16; // rows * cols
     const [desktopApps, setDesktopApps] = useState([...appsToHave, ...Array(gridSize - appsToHave.length).fill(null)]);
-    // Opening too many apps - error: 1
-    const MAXWINDOWS = 1;
 
     const [draggingIndex, setDraggingIndex] = useState(null);
 
@@ -45,23 +43,12 @@ function Desktop({  }) {
         setDraggingIndex(null);
     };
 
-    const handleDoubleClick = (appStr) => {
-        if (activeWindows.length >= MAXWINDOWS) {
-            const newArr = [... activeErrors, {error: 1, errorText: `Your RAM is too teeny-tiny, you can only have ${MAXWINDOWS} active window(s) at once.`}];
-            setActiveErrors(newArr);
-        } else {
-            const newArr = [... activeWindows, {index: activeWindows.length, appStr: appStr}];
-            setActiveWindows(newArr);
-            // setOpenApps(newArr);
-        }
-    };
-
     return (
         <div className='Desktop'>
             {desktopApps.map((desktopApp, index) => {
                 if (desktopApp !== null) {
                     return <Icon key={index} name={desktopApp} handleDragStart={(e) => {handleDragStart(e, index)}} handleDragOver={handleDragOver} 
-                                handleDrop={() => {handleDrop(index)}} handleDoubleClick={() => {handleDoubleClick(desktopApp)}} draggable/>
+                                handleDrop={() => {handleDrop(index)}} handleDoubleClick={() => {openWindow(desktopApp)}} draggable/>
                 } else {
                     return <div key={index} onDragOver={handleDragOver} onDrop={() => {handleDrop(index)}}></div>
                 }
@@ -71,10 +58,7 @@ function Desktop({  }) {
                 return <Window key={index} index={index} appNameStr={window.appStr}/>
             })}
             
-            {activeErrors.map((error, index) => {
-                return <Window key={index} index={index} appNameStr={'Error'} errorText={error.errorText} actives={activeErrors} 
-                            setActives={setActiveErrors} />
-            })}
+            {activeError && <Window appNameStr={'Error'} errorText={activeError.errorText} />}
         </div>
     );
 }

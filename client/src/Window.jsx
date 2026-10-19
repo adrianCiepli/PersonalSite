@@ -5,9 +5,8 @@ import './css/Topbar.css';
 
 
 function Window({ index, appNameStr, errorText=''}) {
-    const {activeWindows, setActiveWindows, activeErrors, setActiveErrors} = useContext(WindowContext);
+    const {closeWindow, closeError} = useContext(WindowContext);
     const isError = appNameStr === 'Error';
-    const [actives, setActives] = isError ? [activeErrors, setActiveErrors] : [activeWindows, setActiveWindows];
     const DEFAULTDIMENSIONS = !isError ? {width:1000, height:700} : {width:500, height:150};
     const [dimensions, setDimensions] = useState(DEFAULTDIMENSIONS);
     const defX = (window.innerWidth / 2) - (dimensions.width / 2);
@@ -107,11 +106,11 @@ function Window({ index, appNameStr, errorText=''}) {
     }
 
     const handleClose = () => {
-        // Remove by own index from the list of actives via setActives and splicing
-        // as of now, the index attribute is not necessary, however may prove useful for more complex functionality
-        let newArr = [...actives];
-        newArr.splice(index, 1);
-        setActives(newArr);
+        if (isError) {
+            closeError();
+        } else {
+            closeWindow(index);
+        }
     }
 
     return (
